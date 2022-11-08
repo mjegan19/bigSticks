@@ -1,0 +1,38 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "Big Sticks - An Aussie Rules Football Card Database",
+  "main": "index.js",
+  "repository": "https://github.com/mjegan19/bigSticks",
+  "author": "Michael Egan",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "axios": "^1.1.3",
+    "bcrypt": "^5.1.0",
+    "cors": "^2.8.5",
+    "debug": "^4.3.4",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "express-fileupload": "^1.4.0",
+    "firebase-admin": "^11.2.0",
+    "helmet": "^6.0.0",
+    "joi": "^17.7.0",
+    "jsonwebtoken": "^8.5.1",
+    "lodash": "^4.17.21",
+    "morgan": "^1.10.0",
+    "uuid": "^9.0.0"
+  },
+  "devDependencies": {
+    "concurrently": "^7.3.0",
+    "nodemon": "^2.0.19"
+  },
+  "scripts": {
+    "test": "node src/index",
+    "server": "nodemon src/index",
+    "debug": "DEBUG=app* nodemon src/index",
+    "client": "cd ../ && npm start --prefix client",
+    "dev": "concurrently -k \"yarn debug\" \"yarn client\"",
+    "prod": "concurrently -k \"yarn server\" \"yarn client\""
+  }
+}

@@ -1,0 +1,17 @@
+USER #01:
+Name:      Bianca Hendricks
+Username:  bianca33
+Email:     bianca33@gmail.com
+Password:  Iggy4Life
+
+USER #02:
+Name:      Michael Egan
+Username:  mykiTV
+Email:     mike@gmail.com
+Password:  Password1234
+
+USER #03:
+Name:      Jonathon Smirk
+Username:  JonJay
+Email:     big_jon_jay@gmail.com
+Password:  easyPassword
