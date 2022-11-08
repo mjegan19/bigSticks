@@ -11,10 +11,6 @@ module.exports = {
       // Store collection reference & run database query
       const cardRef = db.collection('cardInfo');
       const snapshot = await cardRef.get();
-      
-      // const snapshot = await currencyRef.limit(1).get();
-      // const snapshot = await currencyRef.orderBy("name", "asc").limit(1).get();
-      // const snapshot = await currencyRef.where("price_change_percentage_24h", ">", 0).get();
 
       // [400 ERROR] Check for User Asking for Non-Existent Documents
       if (snapshot.empty) {

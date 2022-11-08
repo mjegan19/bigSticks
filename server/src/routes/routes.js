@@ -8,6 +8,8 @@ const router = express.Router();
 // NOTE: As our application grows in complexity, the need for refactoring grows, as we want to keep our code as readable as possible despite growing scale.  We will segment our routes according to collection, to help for easier readibility.
 const authRoutes = require('./authRoutes');
 const cardRoutes = require('./cardRoutes');
+const rarityRoutes = require('./rarityRoutes');
+const conditionRoutes = require('./conditionRoutes');
 
 module.exports = () => {
   // [A] HOME: Test GET Route
@@ -24,6 +26,10 @@ module.exports = () => {
   router.use('/auth', authRoutes());
 
   router.use('/card', cardRoutes());
+  
+  router.use('/rarity', rarityRoutes());
+  
+  router.use('/condition', conditionRoutes());
 
   return router;
 }
