@@ -19,7 +19,7 @@ const Styles = styled.div`
     border-radius: 1rem;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
     text-align: center;
-    min-width: ${props => props.authform ? "30vw" : "60vw"};
+    min-width: 30vw;
   }
 
   .lead-card .card-title {
@@ -30,7 +30,7 @@ const Styles = styled.div`
   }
 `;
 
-const CXCard = ({ title, authform, children }) => (
+const BSCard = ({ title, authform, children }) => (
   <Styles authform={authform ? 1 : 0}> 
     <Container>
       <div className="lead-card">
@@ -43,4 +43,4 @@ const CXCard = ({ title, authform, children }) => (
   </Styles>
 );
 
-export default CXCard
+export default BSCard

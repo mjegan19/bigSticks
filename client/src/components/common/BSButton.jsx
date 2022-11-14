@@ -6,19 +6,23 @@ import styled from 'styled-components';
 
 const StyledButton = styled(Button)`
   width: 100%;
-  border-radius: 1rem;
+  color: var(--highlight-light);
+  font-weight: 500;
+  border-radius: 0.5rem;
   border: none;
-  background-color: var(--brand);
-  transition: all 0.2s;
+  background: rgb(9,152,255);
+  background: linear-gradient(135deg, rgba(9,152,255,1) 25%, rgba(45,235,252,1) 100%);
 
   &:hover, &:active, &:focus {
-    background-color: var(--brand-dark);
-    transform: scale(1.02);
-    box-shadow: none;
+    color: var(--highlight-light);
+    border-radius: 0.5rem;
+    border: none;
+    background: rgb(0,148,255);
+    background: linear-gradient(135deg, rgba(0,148,255,1) 25%, rgba(18,236,255,1) 100%);
   }
 `;
 
-const CXButton = ({ children, loadingState, onClick }) => {
+const BSButton = ({ children, loadingState, onClick }) => {
   return (
     <StyledButton 
       type={onClick ? "button" : "submit"} 
@@ -31,4 +35,4 @@ const CXButton = ({ children, loadingState, onClick }) => {
   )
 }
 
-export default CXButton
+export default BSButton

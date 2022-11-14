@@ -8,8 +8,8 @@ import styled from 'styled-components';
 // Import custom modules
 import authService from '../../services/authService';
 import useAuth from '../../hooks/useAuth';
-import CXCard from '../../components/common/CXCard';
-import CXButton from '../../components/common/CXButton';
+import BSCard from '../../components/common/BSCard';
+import BSButton from '../../components/common/BSButton';
 
 const StyledLabel = styled(Form.Label)`
   display: none;
@@ -89,7 +89,13 @@ const Login = () => {
   }
 
   return (
-    <CXCard title="Login" authform>
+
+
+
+
+
+
+    <BSCard title="Login" authform>
       <Form onSubmit={ handleSubmit }>
         {/* GROUP 1: EMAIL */}
         <Form.Group className="mb-3" controlId="email">
@@ -104,14 +110,14 @@ const Login = () => {
         </Form.Group>
 
         {/* SUBMIT BUTTON */}
-        <CXButton loadingState={loading}>
+        <BSButton loadingState={loading}>
           {loading ? '...' : 'Submit'}
-        </CXButton>
+        </BSButton>
       </Form>
       <UserNav>
         Not a member? &nbsp; <Link to="/signup">Sign Up</Link>
       </UserNav>
-    </CXCard>
+    </BSCard>
   )
 }
 

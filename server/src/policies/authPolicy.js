@@ -8,7 +8,7 @@ module.exports = {
   validateAuth(req, res, next){
     debugJoi(req.body);
     const schema = Joi.object({
-      fullName: Joi.string().pattern(new RegExp('^[a-zA-Z\\s]{3,75}$')).required(),
+      fullName: Joi.string().pattern(new RegExp('^[a-zA-Z\\s]{3,75}$')),
       username: Joi.string().alphanum().min(3).max(30),
       email: Joi.string().email({ minDomainSegments: 2, tlds: { allow: ['com', 'net'] } }).required(),
       password: Joi.string().pattern(new RegExp('^[a-zA-Z0-9]{3,30}$')).required()

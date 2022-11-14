@@ -9,8 +9,8 @@ import { toast } from 'react-toastify';
 // Import custom modules
 import authService from '../../services/authService';
 import useAuth from '../../hooks/useAuth';
-import CXCard from '../../components/common/CXCard';
-import CXButton from '../../components/common/CXButton';
+import BSCard from '../../components/common/BSCard';
+import BSButton from '../../components/common/BSButton';
 
 const StyledLabel = styled(Form.Label)`
   display: none;
@@ -62,6 +62,7 @@ const Signup = () => {
 
   // HOOK: SETTING COMPONENT STATE (& init values)
   const [user, setUser] = useState({
+    fullName: '',
     username: '',
     email: '',
     password: ''
@@ -69,7 +70,7 @@ const Signup = () => {
   const [loading, setLoading] = useState(false);
 
   // Destructure data state nested object properties
-  const { username, email, password } = user;
+  const { fullName, username, email, password } = user;
 
   // HOOK: useRef
   const passwordConfirmRef = useRef();
@@ -103,8 +104,20 @@ const Signup = () => {
   }
 
   return (
-    <CXCard title="Sign Up" authform>
+    <BSCard title="Sign Up" authform>
       <Form onSubmit={ handleSubmit }>
+        {/* GROUP 1: USERNAME */}
+        <Form.Group className="mb-3" controlId="fullName">
+          <StyledLabel>Full Name</StyledLabel>
+          <StyledInput
+            type="text" 
+            placeholder="Full Name"
+            name="fullName"
+            value={fullName}
+            onChange={ handleTextChange }
+            required 
+          />
+        </Form.Group>
         {/* GROUP 1: USERNAME */}
         <Form.Group className="mb-3" controlId="username">
           <StyledLabel>Username</StyledLabel>
@@ -136,14 +149,14 @@ const Signup = () => {
         </Form.Group>
 
         {/* SUBMIT BUTTON */}
-        <CXButton loadingState={loading}>
+        <BSButton loadingState={loading}>
           {loading ? '...' : 'Submit'}
-        </CXButton>
+        </BSButton>
       </Form>
       <UserNav>
         Already a member? &nbsp; <Link to="/login">Login Here</Link>
       </UserNav>
-    </CXCard>
+    </BSCard>
   )
 }
 

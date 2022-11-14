@@ -10,16 +10,16 @@ import Home from './pages/Home';
 import About from './pages/About';
 import NotFound from './pages/NotFound';
 // PAGES: AUTH
-import Signup from './pages/Auth/Signup';
+import SignUp from './pages/Auth/SignUp';
 import Login from './pages/Auth/Login';
 import Dashboard from './pages/Auth/Dashboard';
-import AddCurrency from './pages/Currency/AddCurrency';
-import CurrencyDetail from './pages/Currency/CurrencyDetail';
-import EditCurrency from './pages/Currency/EditCurrency';
-// PAGES: CURRENCY SUB-ROUTES
-import CurrencyMenu from './pages/Currency/CurrencyMenu';
+import AddCard from './pages/Cards/AddCard';
+import CardDetail from './pages/Cards/CardDetail';
+import EditCard from './pages/Cards/EditCard';
+// PAGES: Card SUB-ROUTES
+import CardDeck from './pages/Cards/CardDeck';
 // PAGES: CRYPTO SUB-ROUTES
-import CryptoMenu from './pages/Crypto/CryptoMenu';
+import Ladder from './pages/AFL/Ladder';
 
 function App() {
   return (
@@ -29,22 +29,22 @@ function App() {
         <Route index element={<Home />} />
         <Route path="about" element={<About />} />
         {/* AUTH */}
-        <Route path="signup" element={<Signup />} />
+        <Route path="signup" element={<SignUp />} />
         <Route path="login" element={<Login />} />
         {/* PRIVATE AUTH ROUTES */}
         <Route element={<PrivateRoutes />}>
           <Route path="dashboard" element={<Dashboard />} />
         </Route>
         {/* CURRENCY: API */}
-        <Route path="currency">
-          <Route path="prices" element={<CurrencyMenu />} />
-          <Route path="add" element={<AddCurrency />} />
-          <Route path=":id" element={<CurrencyDetail />} />
-          <Route path="edit/:id" element={<EditCurrency />} />
+        <Route path="cards">
+          <Route path="collection" element={<CardDeck />} />
+          <Route path="add" element={<AddCard />} />
+          <Route path=":id" element={<CardDetail />} />
+          <Route path="edit/:id" element={<EditCard />} />
         </Route>
         {/* CRYPTO: EXTERNAL API */}
-        <Route path="crypto">
-          <Route path="prices" element={<CryptoMenu />}/>   
+        <Route path="afl">
+          <Route path="ladder" element={<Ladder />}/>   
         </Route>
         {/* ERROR PAGES */}
         <Route path="*" element={<NotFound />} />

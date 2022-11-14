@@ -2,8 +2,8 @@ import React from 'react';
 
 // Import custom modules
 import useAuth from '../../hooks/useAuth';
-import CXCard from '../../components/common/CXCard';
-import CXButton from '../../components/common/CXButton';
+import BSCard from '../../components/common/BSCard';
+import BSButton from '../../components/common/BSButton';
 
 const Dashboard = () => {
   // HOOK: CONTEXT FOR AUTH
@@ -12,16 +12,16 @@ const Dashboard = () => {
   // CONDITIONAL LOAD: USER ERROR [POSSIBLY REPLACE WITH LOADING STATE]
   if (!user) {
     return (
-      <CXCard title="Profile">
+      <BSCard title="Profile">
         <div className="text-center mb-4">
           Cannot Retrieve User
         </div>
-      </CXCard>
+      </BSCard>
     )
   }
 
   return (
-    <CXCard title="Profile" authform>
+    <BSCard title="Profile" authform>
       <div className="text-center mb-4">
         <h4>Welcome {user.username}!</h4>
       </div>
@@ -31,12 +31,12 @@ const Dashboard = () => {
       {/* Log Out & Forces a Redirect */}
       { user &&
         <div className="mt-5">
-          <CXButton onClick={() => { logout() }}>
+          <BSButton onClick={() => { logout() }}>
             Log Out
-          </CXButton>
+          </BSButton>
         </div>
       }
-    </CXCard>
+    </BSCard>
   )
 }
 
