@@ -41,7 +41,7 @@ function del(id) {
 // 1. Form Config Headers
 const formConfig = {
   headers: {
-    'content-type': 'multipart/form-data'
+    'Content-Type': 'multipart/form-data'
   }
 }
 
@@ -57,7 +57,6 @@ function prepareFormData(data, uploadedfile) {
   formData.append('competition', data.competition);
   formData.append('cardNo', data.cardNo);
   formData.append('setTotal', data.setTotal);
-  formData.append('description', data.description);
   formData.append('description', data.description);
   formData.append('condition', data.condition);
   formData.append('rarity', data.rarity);

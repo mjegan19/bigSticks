@@ -11,29 +11,21 @@ import useAuth from '../../hooks/useAuth';
 import BSCard from '../../components/common/BSCard';
 import BSButton from '../../components/common/BSButton';
 
-const StyledLabel = styled(Form.Label)`
-  display: none;
+const FormLabel = styled(Form.Label)`
+  font-size: 0.75rem;
+  font-weight: 500;
+  margin-bottom: 0rem;
+  margin-left: 0.7rem;
 `;
 
-const StyledInput = styled(Form.Control)`
-  margin: 2rem 0;
-  text-align: center;
-  font-weight: 600;
-  font-size: 0.9em;
-  letter-spacing: 0.1em;
-  outline: none;
-  box-sizing: border-box;
-  border: 2px solid rgba(0, 0, 0, 0.02);
-  border-radius: 1rem;
+const FormControl = styled(Form.Control)`
+  background-color: var(--highlight-light);
   color: var(--complementary);
-  background: rgba(136, 126, 126, 0.04);
-  transition: all 0.2s;
-
-  &:focus {
-    border: 2px solid var(--highlight);
-    box-shadow: none;
-    transform: scale(1.01);
-  }
+  border: none;
+  border-bottom: 3px solid var(--highlight-dark);
+  border-radius: 0rem;
+  margin-top: 0rem;
+  padding-bottom: 0.25rem;
 `;
 
 const UserNav = styled.div`
@@ -41,6 +33,7 @@ const UserNav = styled.div`
   padding-top: 1rem;
   font-size: 0.9em;
   font-style: italic;
+  text-align: center;
 
   a {
     text-decoration: none;
@@ -89,24 +82,18 @@ const Login = () => {
   }
 
   return (
-
-
-
-
-
-
     <BSCard title="Login" authform>
       <Form onSubmit={ handleSubmit }>
         {/* GROUP 1: EMAIL */}
         <Form.Group className="mb-3" controlId="email">
-          <StyledLabel>Email</StyledLabel>
-          <StyledInput type="email" placeholder="Enter email" name="email" value={email} onChange={ handleTextChange } required />
+          <FormLabel>Email</FormLabel>
+          <FormControl type="email" placeholder="Enter email" name="email" value={email} onChange={ handleTextChange } required />
         </Form.Group>
 
         {/* GROUP 2: PASSWORD */}
         <Form.Group className="mb-3" controlId="password">
-          <StyledLabel>Password</StyledLabel>
-          <StyledInput type="password" placeholder="Enter password" name="password" value={password} onChange={ handleTextChange } required />
+          <FormLabel>Password</FormLabel>
+          <FormControl type="password" placeholder="Enter password" name="password" value={password} onChange={ handleTextChange } required />
         </Form.Group>
 
         {/* SUBMIT BUTTON */}

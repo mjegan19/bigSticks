@@ -15,11 +15,9 @@ const Styles = styled.div`
   .lead-card {
     margin: auto;
     padding: 2rem;
+    width: 550px;
     background-color: var(--primary);
-    border-radius: 1rem;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-    text-align: center;
-    min-width: 30vw;
+    border: 1px solid var(--highlight-dark);
   }
 
   .lead-card .card-title {
@@ -27,6 +25,7 @@ const Styles = styled.div`
     font-size: 2em;
     font-weight: 600;
     color: var(--brand);
+    text-align: center;
   }
 `;
 
@@ -43,4 +42,4 @@ const BSCard = ({ title, authform, children }) => (
   </Styles>
 );
 
-export default BSCard
+export default BSCard;

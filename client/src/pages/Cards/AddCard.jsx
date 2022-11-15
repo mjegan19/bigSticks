@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Row, Col, Form, InputGroup, Container } from 'react-bootstrap';
+import { Row, Col, Form, Container } from 'react-bootstrap';
+import styled from 'styled-components';
 
 // Import local component
 import BSCard from '../../components/common/BSCard'
@@ -9,6 +10,49 @@ import formRequest from '../../services/formRequest';
 import cardRequest from '../../services/cardRequest';
 import ErrorPage from '../../components/common/ErrorPage';
 import Loader from '../../components/common/Loader';
+
+const FormLabel = styled(Form.Label)`
+  font-size: 0.75rem;
+  font-weight: 500;
+  margin-bottom: 0rem;
+  margin-left: 0.7rem;
+`;
+
+const FormControl = styled(Form.Control)`
+  background-color: var(--highlight-light);
+  color: var(--complementary);
+  border: none;
+  border-bottom: 3px solid var(--highlight-dark);
+  border-radius: 0rem;
+  margin-top: 0rem;
+  padding-bottom: 0.25rem;
+`;
+
+const SelectOption = styled(Form.Control)`
+  background-color: var(--highlight-light);
+  color: var(--complementary);
+  border: none;
+  border-bottom: 3px solid var(--highlight-dark);
+  border-radius: 0rem;
+  margin-top: 0rem;
+  padding-bottom: 0.32rem;
+  padding-left: 0.7rem;
+  padding-top: 0.5rem;
+  width: 100%;
+`;
+
+const TextArea = styled(Form.Control)`
+  background-color: var(--highlight-light);
+  color: var(--complementary);
+  border: none;
+  border-bottom: 3px solid var(--highlight-dark);
+  border-radius: 0rem;
+  margin-top: 0rem;
+  padding-bottom: 0rem;
+  padding-left: 0.75rem;
+  padding-top: 0.5rem;
+  width: 100%;
+`;
 
 const AddCard = () => {
   // Hook - Initial States
@@ -103,7 +147,7 @@ const AddCard = () => {
     try {
       const response = await cardRequest.post(cardData);
       console.log(response);
-      navigate('/card/details');
+      navigate('/cards/collection');
 
     } catch (err) {
       console.log(err?.response);
@@ -137,8 +181,8 @@ const AddCard = () => {
         <Row>
           <Col>
             <Form.Group className="mb-3">
-              <Form.Label>Card Year</Form.Label>
-              <Form.Control
+              <FormLabel>Card Year</FormLabel>
+              <FormControl
                 type="text"
                 placeholder="eg. 1982"
                 name="year"
@@ -149,8 +193,8 @@ const AddCard = () => {
           </Col>
           <Col>
             <Form.Group className="mb-3">
-              <Form.Label>Card Number</Form.Label>
-              <Form.Control
+              <FormLabel>Card Number</FormLabel>
+              <FormControl
                 type="text"
                 placeholder="eg. 57"
                 name="cardNo"
@@ -161,8 +205,8 @@ const AddCard = () => {
           </Col>
           <Col>
             <Form.Group className="mb-3">
-              <Form.Label>Cards in Set</Form.Label>
-              <Form.Control
+              <FormLabel>Cards in Set</FormLabel>
+              <FormControl
                 type="text"
                 placeholder="eg. 352"
                 name="setTotal"
@@ -176,8 +220,8 @@ const AddCard = () => {
         <Row>
           <Col>
             <Form.Group className="mb-3">
-              <Form.Label>Competition</Form.Label>
-              <Form.Control
+              <FormLabel>Competition</FormLabel>
+              <FormControl
                 type="text"
                 placeholder="AFL, WAFL, SANFL..."
                 name="competition"
@@ -188,8 +232,8 @@ const AddCard = () => {
           </Col>
           <Col>
             <Form.Group className="mb-3">
-              <Form.Label>Card Brand</Form.Label>
-              <Form.Control
+              <FormLabel>Card Brand</FormLabel>
+              <FormControl
                 type="text"
                 placeholder="Scanlens, Select, etc"
                 name="manufacturer"
@@ -203,8 +247,8 @@ const AddCard = () => {
         <Row>
           <Col>
             <Form.Group className="mb-3">
-              <Form.Label>Player Name</Form.Label>
-              <Form.Control
+              <FormLabel>Player Name</FormLabel>
+              <FormControl
                 type="text"
                 placeholder="Enter the player's name"
                 name="playerName"
@@ -215,8 +259,8 @@ const AddCard = () => {
           </Col>
           <Col>
             <Form.Group className="mb-3">
-              <Form.Label>Team Name</Form.Label>
-              <Form.Control
+              <FormLabel>Team Name</FormLabel>
+              <FormControl
                 type="text"
                 placeholder="eg. Footscray Bulldogs"
                 name="teamName"
@@ -230,71 +274,55 @@ const AddCard = () => {
         <Row>
           <Col>
             <Form.Group className="mb-3">
-              <Form.Label>Card Rarity</Form.Label>
-              <Form.Control
+              <FormLabel>Card Rarity</FormLabel>
+              <SelectOption
                 as="select"
                 name="rarity"
                 value={rarity}
                 onChange={handleTextChange}
               >
-                <option value="Poor">Poor</option>
-                <option value="Good">Good</option>
-                <option value="Light Played">Light Played</option>
-                <option value="Excellent">Excellent</option>
-                <option value="Near Mint">Near Mint</option>
-                <option value="Mint">Mint</option>
-
-                {/* { rareness.map(( option ) => (
+                { rareness.map(( option ) => (
                   <option 
                     key={option.id}
                     id={option.id}
                     value={option.rarity}>{option.rarity}</option>
-                ))} */}
-              </Form.Control>
+                ))}
+              </SelectOption>
             </Form.Group>
           </Col>
           <Col>
             <Form.Group className="mb-3">
-              <Form.Label>Card Condition</Form.Label>
-              <Form.Control
+              <FormLabel>Card Condition</FormLabel>
+              <SelectOption
                 as="select"
                 name="condition"
                 value={condition}
                 onChange={handleTextChange}
               >
-                <option value="Free">Free</option>
-                <option value="Common">Common</option>
-                <option value="Rare">Rare</option>
-                <option value="Legendary">Legendary</option>
-                <option value="Epic">Epic</option>
-
-                {/* { appearance.map(( option ) => (
+                { appearance.map(( option ) => (
                   <option 
                     key={option.id}
                     id={option.id}
                     value={option.condition}>{option.condition}</option>
-                ))} */}
-              </Form.Control>
+                ))}
+              </SelectOption>
             </Form.Group>
           </Col>
           <Col>
-            <Form.Label>Card Value</Form.Label>
-            <InputGroup className="mb-3">
-              <InputGroup.Text>$</InputGroup.Text>
-                <Form.Control
-                  type="text"
-                  placeholder="eg. 352"
-                  name="value"
-                  value={value}
-                  onChange={handleTextChange}
-                />
-            </InputGroup>
+            <FormLabel>Card Value ($)</FormLabel>
+            <FormControl
+              type="text"
+              placeholder="eg. $4.99"
+              name="value"
+              value={value}
+              onChange={handleTextChange}
+            />
           </Col>
         </Row>
 
         <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-          <Form.Label>Card Description</Form.Label>
-          <Form.Control 
+          <FormLabel>Card Description</FormLabel>
+          <TextArea
             as="textarea"
             rows={3}
             placeholder="Tell us about the card in your collection"
@@ -305,8 +333,8 @@ const AddCard = () => {
         </Form.Group>
 
         <Form.Group className="my-3" controlId="image">
-          <Form.Label>Card Image</Form.Label>
-          <Form.Control
+          <FormLabel>Card Image</FormLabel>
+          <FormControl
             type="file"
             onChange={handleFileChange}
           />

@@ -6,15 +6,15 @@ import styled from 'styled-components';
 
 const StyledButton = styled(Button)`
   width: 100%;
-  color: var(--highlight-light);
+  color: var(--primary);
   font-weight: 500;
   border-radius: 0.5rem;
   border: none;
   background: rgb(9,152,255);
   background: linear-gradient(135deg, rgba(9,152,255,1) 25%, rgba(45,235,252,1) 100%);
-
+  
   &:hover, &:active, &:focus {
-    color: var(--highlight-light);
+    color: var(--primary);
     border-radius: 0.5rem;
     border: none;
     background: rgb(0,148,255);
