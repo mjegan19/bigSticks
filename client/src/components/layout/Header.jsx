@@ -37,7 +37,7 @@ const { user, logout } = useAuth();
           <Nav className="me-auto">
             <Nav.Link as={Link} to="/about">About</Nav.Link>
             <Nav.Link as={Link} to="/cards/collection">Trading Cards</Nav.Link>
-            <Nav.Link as={Link} to="/crypto/prices">AFL Ladder</Nav.Link>
+            <Nav.Link as={Link} to="/afl/ladder">AFL Ladder</Nav.Link>
           </Nav>
           {/* RIGHT AUTH NAVS */}
           <Nav>

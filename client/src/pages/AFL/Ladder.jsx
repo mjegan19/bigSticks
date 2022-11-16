@@ -6,7 +6,7 @@ import { Container } from 'react-bootstrap';
 import { toast } from 'react-toastify';   //Error box
 
 // Import components
-import MenuList from '../../components/features/CardList';
+import LadderList from '../../components/features/LadderList';
 import ErrorPage from '../../components/common/ErrorPage';
 import Loader from '../../components/common/Loader';
 
@@ -24,7 +24,7 @@ const Ladder = () => {
     console.log("Effect Ran");
 
     if (effectRan.current === false) {
-      fetchCrypto();
+      fetchLadder();
       setLoading(false);
 
       // CLEAN UP FUNCTION
@@ -36,12 +36,12 @@ const Ladder = () => {
   }, []);
 
   // COMPONENT FUNCTIONS
-  async function fetchCrypto() {
+  async function fetchLadder() {
     try {
-      // External API Request: CoinGecko
-      const response = await axios.get('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=20&page=1');
+      // External API Request: Squiggle AFL
+      const response = await axios.get("https://api.squiggle.com.au/?q=standings&year=2022");
       console.log(response);
-      const data = await response.data;
+      const data = await response.data.standings;
 
       // SUCCESS: Output overrides intiial data state
       setData(data);
@@ -74,12 +74,12 @@ const Ladder = () => {
   // DEFAULT LOAD: SUCCESS API CALL
   return (
     <Container>
-      <h1>Cryptocurrency Information &amp; Prices</h1>
-      <p>CentralX is the easiest way to buy, sell and trade your favourite cryptocurrencies - from everything Bitcoin to Ethereum, we have all the coins you need to succeed</p>
+      <h1>Final 2022 AFL Ladder Standings</h1>
+      <p>This year's AFL season was another ripper, with plenty of drama, tension and high stakes right up until the very end.  Here's a look at how the teams stood after the home and season, just before the exciting finals fixtures took place!</p>
 
-      {/* SECTION: Crypto Menu */}
+      {/* SECTION: Ladder Results */}
       {/* REFACTOR (A): Our return ONLY concerned with the success render condition AND all moving parts are abstracted out (SEE FEATURES COMPONENTS) */}
-      {data.length > 0 && <MenuList title="Cryptocurrency" coins={data} />}
+      {data.length > 0 && <LadderList standings={data} />}
     </Container>
   )
 };

@@ -8,7 +8,7 @@ module.exports = {
     try {
       // Store collection reference & run database query
       const rarityRef = db.collection('cardRarity');
-      const snapshot = await rarityRef.get();
+      const snapshot = await rarityRef.orderBy('key', 'desc').get();
 
       // [400 ERROR] Check for User Asking for Non-Existent Documents
       if (snapshot.empty) {
@@ -20,6 +20,7 @@ module.exports = {
         snapshot.forEach(doc => {
           docs.push({
             id: doc.id,
+            key: doc.data().key,
             rarity: doc.data().rarity,
           });
         });

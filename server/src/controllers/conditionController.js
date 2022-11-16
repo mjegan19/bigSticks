@@ -20,6 +20,7 @@ module.exports = {
         snapshot.forEach(doc => {
           docs.push({
             id: doc.id,
+            key: doc.data().key,
             condition: doc.data().condition,
           });
         });

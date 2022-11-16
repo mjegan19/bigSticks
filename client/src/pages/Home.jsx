@@ -11,7 +11,7 @@ const Home = () => {
   return (
     <Container>
       <HeroBox 
-        title="Through the Big Sticks"
+        title="Kick it through the BIGSTICKS!"
         content="The ultimate footy card database.  View the collection, add a card and keep track of all the footy cards in your collection!"
         button="View the Collection"
       />
