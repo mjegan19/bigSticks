@@ -39,16 +39,33 @@ const Styles = styled.div`
   }
 `;
 
-const HeroBox = ({ title, content, button }) => {
+const HeroBox = ({ title, content, button, page }) => {
 
   const navigate = useNavigate();
+
+  var bgImg;
+    if (page === "home") {
+      bgImg = require('../../assets/marvel_stadium.jpg');
+    }
+    if (page === "about") {
+      bgImg = require('../../assets/MCG.jpeg');
+    }
+
+    const handleClick = (e) => {
+      if (page === "home") {
+        return navigate("/cards/collection");
+      }
+      if (page === "about") {
+        return navigate("/signup");
+      }
+    }
 
   return (
     <Styles>
       <div
         className='overlay'
         style={{
-          backgroundImage: `url(${require('../../assets/marvel_stadium.jpg')})`,
+          backgroundImage: `url(${bgImg})`,
           backgroundPosition: 'center',
           backgroundSize: 'cover',
           backgroundRepeat: 'no-repeat',
@@ -62,7 +79,7 @@ const HeroBox = ({ title, content, button }) => {
         <p>{content}</p>
         { button && (
           <div>
-            <BSButton onClick={() => {navigate('/cards/collection')}}>{button}</BSButton>
+            <BSButton onClick={handleClick}>{button}</BSButton>
           </div>
         )}
       </div>

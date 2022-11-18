@@ -1,62 +1,57 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import { Container, Card, Col, Row } from 'react-bootstrap';
+import { Container, Col, Row } from 'react-bootstrap';
 import BSButton from '../../components/common/BSButton';
 import NavLink from '../../components/common/NavLink';
 import useAuth from '../../hooks/useAuth';
 
-// Import Test Img
-// import TestImg from '../../assets/test_imgs/istockphoto-483199983-612x612.jpeg';
 
 import cardRequest from '../../services/cardRequest';
 import ErrorPage from '../../components/common/ErrorPage';
 import Loader from '../../components/common/Loader';
 
 const Styles = styled.div`
-  .hero-box {
-    padding: 2rem;
-    margin-top: 4rem;
-    margin-bottom: 4rem;
-    background-color: var(--highlight-light);
-    color: var(--complementary);
-    border-radius: 1rem;
-
-    .row.main {
-      padding-bottom: 1rem;
-      border-bottom: solid 5px var(--primary);
-
-      .image-section {
-        text-align: center;
   
-        img {
-          margin-top: 1rem;
-          width: 50%;
-          padding: 1rem;
-          border-radius: 50%;
-        }
-      }
-    }
+  .cardHeader {
+    display: grid;
+    grid-template-columns: 80% 10% 10%;
+  }
+  
+  .cardBody {
+    display: grid;
+    grid-template-columns: 65% 35%;
+    gap: 2%;
+    margin-top: 1rem;
 
-    .row.secondary {
-      .info-box {
-        margin-top: 1rem;
-
-        span.title {
-          font-weight: bold;
-        }
-      }
-    }
-
-    .admin-box {
-      margin: 2rem 0;
-
-      .grid-row {
-        display: grid;
-        gap: 1rem;
-        grid-template-columns: repeat(2, 1fr);
+    .cardSpecs {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      
+      .subSpecs {
+        background-color: var(--highlight-light);
+        text-align: center;
         align-items: center;
+        height: 180px;
+        font-size: 1.5rem;
+        padding-top: 55px;
+
+        span {
+          font-weight: 700;
+        }
       }
+
+      .desc {
+        grid-column: 1 / span 3;
+      }
+    }
+
+    .cardImg > img {
+      max-width: 400px;
+      align-self: center;
+      padding: 0.5rem;
+      border: 1px solid var(--highlight-light);
     }
   }
 `;
@@ -147,50 +142,34 @@ const CardDetail = () => {
 
     <Styles>
       <Container>
-        {/* HEADING SECTION */}
-        <div className="hero-box">
-          <Container>
-            
-            {/* 1. MAIN ROW */}
-            <Row className="main">
-              <Col>
-                <h2>{year}{' '}{playerName}{' '}{teamName}{' '}{manufacturer}{' '}{competition}{' '} Trading Card</h2>
-                <h3>{cardNo} of {setTotal}</h3>
-                <p>{description}</p>
-              </Col>
-              <Col>
-                <div className="image-section">
-                  <h2>{playerName}</h2>
-                  <img className="preview-image" src={image} alt={`Preview of ${playerName}`} />
-                </div>
 
-                {/* HIDDEN - ADMIN DROPDOWN SECTION*/}
-                { user && <div className="admin-box">
-                  <div className="grid-row">
-                    {/* EDIT LINK */}
-                    <NavLink to={`/cards/edit/${id}`}>Edit</NavLink>
-
-                    {/* DELETE BUTTON */}
-                    <BSButton onClick={handleDeleteClick} loadingState={loading}>{loading ? '...' : 'Delete'}</BSButton>
-                  </div>
-                </div>}
-
-              </Col>
-            </Row>
-
-            {/* 2. OTHER INFORMATION */}
-            <Row className="secondary">             
-              <div className="info-box">
-                <div>
-                  <p><span className="title">Condition: </span>{condition}</p>
-                  <p><span className="title">Rarity: </span>{rarity} %</p>
-                  <p><span className="title">Value: </span>{value}</p>
-                </div>
-              </div>
-            </Row>
-
-          </Container>
+        <div className="cardHeader">
+          <div className="title"><h1>{year}{' '}{playerName}{' '}&#91;{teamName}&#93;{' '}Trading Card</h1></div>
+          { user && <div className="edit"><NavLink to={`/cards/edit/${id}`} outline>Edit</NavLink></div> }
+          { user && <div className="delete"><BSButton onClick={handleDeleteClick} loadingState={loading}>{loading ? '...' : 'Delete'}</BSButton></div>}
         </div>
+
+        <div className="cardBody">
+          <div className="cardSpecs">
+            <div className="desc">{description}</div>
+            <div className="subSpecs"><span>Card</span><br />{cardNo} of {setTotal}</div>
+            <div className="subSpecs"><span>Competition</span><br />{competition}</div>
+            <div className="subSpecs"><span>Produced by</span><br />{manufacturer}</div>
+            <div className="subSpecs"><span>Condition</span><br />{condition}</div>
+            <div className="subSpecs"><span>Rarity</span><br />{rarity}</div>
+            <div className="subSpecs"><span>Value</span><br />{value}</div>
+          </div>
+          <div className="cardImg">
+            <img className="preview-image" src={image} alt={`Preview of ${playerName}`} />
+          </div>
+        </div>
+
+
+
+
+
+
+    
       </Container>
     </Styles>
   )

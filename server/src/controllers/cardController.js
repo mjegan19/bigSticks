@@ -10,7 +10,10 @@ module.exports = {
     try {
       // Store collection reference & run database query
       const cardRef = db.collection('cardInfo');
-      const snapshot = await cardRef.get();
+      const snapshot = await cardRef
+        .orderBy('playerName', 'asc' )
+        .orderBy('rarity', 'desc')
+        .get();
 
       // [400 ERROR] Check for User Asking for Non-Existent Documents
       if (snapshot.empty) {

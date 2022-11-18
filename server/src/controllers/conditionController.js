@@ -8,7 +8,7 @@ module.exports = {
     try {
       // Store collection reference & run database query
       const conditionRef = db.collection('cardCondition');
-      const snapshot = await conditionRef.get();
+      const snapshot = await conditionRef.orderBy('key', 'desc').get();
 
       // [400 ERROR] Check for User Asking for Non-Existent Documents
       if (snapshot.empty) {
